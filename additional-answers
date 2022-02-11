@@ -1,0 +1,22 @@
+Question #2 slow page loads
+
+the answer can lie withing a the main componenets and be broken down further.
+first I would ensure that network throughtput is optimal between the client and the source.
+second I would investigate the major components of the app starting with the web server as the logs could provide information into which component is failing. I am not an expert at debugung code,
+but an application built on php  could have some logging enabled that would point to an issue in the app or while gathering resources such data from a mysql database or images in an object repository.
+there could also be issue where javascript is pulling data/resources that is geolocated and this would also contribute to slowness if a data is being pulled from the wrong location.
+
+in terms of what can be investigated per component
+webserver - performnance configuration in respect to the available memory and the fact that it is shared with the MYSQL server 
+DATABASE - Mysql has some best practice configurations and should be configured in a way that takes account for the other components of the app. also in this case we would test queries and ensure that primary keys are set to speed the retrieval of data
+php - check php/application log ensure that the performance configuration is consistent 
+
+
+Qestion #4
+
+clone the main branch
+create a branch of your own
+
+git clone to get a copy of the main branch 
+
+Question #5
