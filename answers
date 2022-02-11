@@ -1,0 +1,9 @@
+#basic to pull userid's over 500
+awk -F: '{if ($3 >= 500) { print $1 ":" $6} }' /etc/passwd
+
+#Using getent to get actuall users
+for i in `ls /home`; do getent passwd $i |awk -F: '{ print $1 ":" $6 }' ; done
+
+crontab -e
+
+59 * * * * /usr/local/bin/gitlab-script
