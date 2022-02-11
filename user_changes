@@ -1,0 +1,22 @@
+#!/bin/bash
+
+INITIAL=$(for i in `ls /home`; do getent passwd $i |awk -F: '{ print $1 ":" $6 }' | md5sum ;done)
+
+SUBSEQ=$(for i in `ls /home`; do getent passwd $i |awk -F: '{ print $1 ":" $6 }' | md5sum ;done)
+
+#Creates the initial file
+echo $INITIAL > /var/log/current_user
+
+#Logic to route log entries
+
+if [ "$SUBSEQ" != "$INITIAL" ] 
+
+then
+
+echo "`date` --- $SUBSEQ changed" >> /var/log/user_changes && echo  "$SUBSEQ" > /var/log/current_user
+
+else 
+
+echo " `date` --- NO CHANGE" >> /var/log/user_changes
+
+fi
