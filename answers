@@ -6,4 +6,4 @@ for i in `ls /home`; do getent passwd $i |awk -F: '{ print $1 ":" $6 }' ; done
 
 crontab -e
 
-59 * * * * /usr/local/bin/gitlab-script
+59 * * * * /usr/local/bin/user_changes
