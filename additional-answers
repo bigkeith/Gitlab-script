@@ -6,28 +6,28 @@ second I would investigate the major components of the app starting with the web
 but an application built on php  could have some logging enabled that would point to an issue in the app or while gathering resources such data from a mysql database or images in an object repository.
 there could also be issue where javascript is pulling data/resources that is geolocated and this would also contribute to slowness if a data is being pulled from the wrong location.
 
-in terms of what can be investigated per component
+In terms of what can be investigated per component
 webserver - performnance configuration in respect to the available memory and the fact that it is shared with the MYSQL server 
 DATABASE - Mysql has some best practice configurations and should be configured in a way that takes account for the other components of the app. also in this case we would test queries and ensure that primary keys are set to speed the retrieval of data
 php - check php/application log ensure that the performance configuration is consistent 
 
 Question #3
 
-assuming we are already in main(master) 
+Assuming we are already in main(master) 
 
-git add $change
-git commit -m ""
-git add $change
-git commit -m ""
-git branch feature-branch
-git add $change
-git commit -m ''
-git merge feature-branch
+ git add $change
+ git commit -m ""
+ git add $change
+ git commit -m ""
+ git branch feature-branch
+ git add $change
+ git commit -m ''
+ git merge feature-branch
 
 
 
 Question #4
-HOW IMPLEMENT A NEW FEAATURE USING GIT
+HOW IMPLEMENT A NEW FEATURE USING GIT
 
 Clone the main branch. this will download a copy of a project and you will have free range to mmake any changes you need.
 # git clone path-to-existing-project
