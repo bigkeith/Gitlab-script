@@ -1,3 +1,30 @@
+user_changes
+#---------------------------------------------------------------
+#!/bin/bash
+
+#create variable for later use
+INITIAL=$(for i in `ls /home`; do getent passwd $i |awk -F: '{ print $1 ":" $6 }' | md5sum ;done)
+SUBSEQ=$(for i in `ls /home`; do getent passwd $i |awk -F: '{ print $1 ":" $6 }' | md5sum ;done)
+
+#Creates the initial file
+echo $INITIAL > /var/log/current_user
+
+#Logic to route log entries:
+if [ "$SUBSEQ" != "$INITIAL" ] 
+then
+echo "`date` --- $SUBSEQ changed" >> /var/log/user_changes && echo  "$SUBSEQ" > /var/log/current_user
+else 
+echo " `date` --- NO CHANGE" >> /var/log/user_changes
+fi
+
+#------------------------------------------------------------------
+
+crontab -e
+
+59 * * * * /usr/local/bin/user_changes
+
+
+
 Question #2 slow page loads
 
 the answer can lie withing a the main componenets and be broken down further.
@@ -30,25 +57,31 @@ Question #4
 HOW IMPLEMENT A NEW FEATURE USING GIT
 
 Clone the main branch. this will download a copy of a project and you will have free range to mmake any changes you need.
+
 # git clone path-to-existing-project
+
 To make sure you always have a working code base you will want to create a new branch to work from in some case you may need more than one. but for this example we will keep it simple
+
 #git branch my-new-branch
 
-Switch to your new branch 
+Switch to your new branch  
+
 #git checkout my-mew-branch
 
 At this point you have a code base to work from and merge changes when you are ready 
 
-after testing you will want to merge you changes to the master codebase with the following:
+After testing you will want to merge you changes to the master codebase with the following:
 
 #git merge my-new-branch
 
+For a more detailed look into git please checkout the following:
+https://www.youtube.com/watch?v=8JJ101D3knE
 
 
 Question #5
 
 I'm currently enrolled Red Had Learning subscription and am learning openshift and podman. I am also using the youtube channel "The digital Life" as a means to supplement podman and docker training. I also have a subscription to Acloud Gurus to maintain some knowlege of the direction of cloud technology
 
-
-
-
+reference:
+https://www.youtube.com/watch?v=8JJ101D3knE
+https://git-scm.com/
